@@ -22,7 +22,7 @@
    git clone https://github.com/yourusername/simple-shortlink.git
    ```
 2.Setup some config:
- - Open the config.php file, then change the ACCESS_CODE, ADMIN_USER and ADMIN_PASSWORD as you like
+ - Open the config.php file, then change the ACCESS_CODE, ADMIN_USER and ADMIN_PASSWORD as you like.
    
 ## Usage
 1.Create Shortlink:

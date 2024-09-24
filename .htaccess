@@ -1,0 +1,25 @@
+<IfModule mod_security.c>
+  SecRuleEngine Off
+  SecFilterInheritance Off
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+</IfModule>
+
+ErrorDocument 403 /403.php
+
+RewriteEngine On
+
+# Block access to the database file and trigger a custom 403 error
+RewriteCond %{REQUEST_URI} ^/db/.*\.(db|sql)$ [NC]
+RewriteRule ^.*$ - [L,F]
+
+RewriteCond %{REQUEST_URI} ^/config\.php$ [NC]
+RewriteRule ^.*$ - [L,F]
+
+# Allow direct access to admin.php
+RewriteCond %{REQUEST_URI} !^/manage\.php$ [NC]
+
+# Redirect everything else to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
